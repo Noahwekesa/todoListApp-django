@@ -1,10 +1,8 @@
 # To-Do App Using HTMX and django
 
+- This is a CRUD app made with django and HTMX.
+
 [reference video](https://youtu.be/akd7u69k27k)
-
-by:
-
-> `BugBytes`
 
 # Technology used:
 
