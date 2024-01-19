@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% load partials %}
+{% block content %}
+
+<div class="flex flex-col items-center mx-10 md:mx-20">
+
+  <!-- Open the modal using ID.showModal() method -->
+
+<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+ <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="font-bold text-lg">Add Todo</h3>
+    <form
+      
+      hx-post="{% url 'submit-todo' %}"
+      hx-target="#todo-table-body"
+      hx-swap="beforebegin"
+      hx-on::after-request="this.reset()"
+      >
+  <div class="form-control">
+  <label>Description</label>
+{% render_field form.description class="textarea textarea-bordered" %}
+</div>
+<div class="form-control">
+  <label>Completed?</label>
+{% render_field form.is_completed type="checkbox" class="toggle toggle-success"  %}
+</div>
+<button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+    
+  </div>
+</dialog>
+
+
+    <!-- table -->
+  <table class="table table-zebra table-lg">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Created</th>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <tbody id="todo-table-body">
+      {% for todo in todos %}
+      {% partialdef todoitem-partial inline=True %}
+      <!-- row 1 -->
+      <tr class="bg-base-200">
+        <td>{{todo.description}}</td>
+        <td>{{todo.created_at|naturaltime}}</td>
+        <td>{{todo.is_completed}}</td>
+      </tr>
+      {% endpartialdef %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

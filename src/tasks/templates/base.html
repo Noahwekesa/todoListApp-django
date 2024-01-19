@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <div class="container mt-4">
+    {% include "navbar.html" %}
+
+    <div>
+
+      {% if messages %}
+      <div class="toast toast-top toast-center">
+        {% for message in messages %}
+
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+          {{ message }}
+
+        </div>
+        {% endfor %}
+
+      </div>
+
+      {% endif %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>
