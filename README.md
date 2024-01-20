@@ -8,6 +8,14 @@
 - Mark tasks as complete
 - Responsive and user-friendly design
 
+### DASHBOARD
+
+![Image](https://github.com/Noahwekesa/todoListApp-django/blob/master/images/dash.png)
+
+### lOGIN FORM
+
+![Image](https://github.com/Noahwekesa/todoListApp-django/blob/master/images/login.png)
+
 ## Prerequisites
 
 Make sure you have the following installed before running the application:
