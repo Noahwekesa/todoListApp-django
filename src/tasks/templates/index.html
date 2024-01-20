@@ -8,7 +8,7 @@
 
   <!-- Open the modal using ID.showModal() method -->
 
-<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<button class="btn btn-primary" onclick="my_modal_1.showModal()">Add Todo</button>
 <dialog id="my_modal_1" class="modal">
   <div class="modal-box">
  <form method="dialog">
@@ -45,6 +45,7 @@
         <th>Description</th>
         <th>Created</th>
         <th>Completed</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody id="todo-table-body">
@@ -55,6 +56,23 @@
         <td>{{todo.description}}</td>
         <td>{{todo.created_at|naturaltime}}</td>
         <td>{{todo.is_completed}}</td>
+        <td> 
+{% if not todo.is_completed %}
+      <button 
+      class="btn btn-sm btn-success"
+      hx-post="{% url 'complete-todo' todo.pk %}"
+      hx-target="closest tr"
+      hx-swap="outerHTML"
+      >
+      Mark Completed</button>
+{% endif %}
+<button
+hx-delete="{% url 'delete-todo' todo.pk %}"
+  class="btn btn-sm btn-error"
+
+    hx-on:delete-todo="this.closest('tr').remove()"
+  >Delete</button>
+        </td>
       </tr>
       {% endpartialdef %}
       {% endfor %}

@@ -21,5 +21,7 @@ from tasks import views
 urlpatterns = [
     path('', views.index, name="home"),
     path('submit_todo/', views.submit_todo, name='submit-todo'),
+    path('complete_todo/<int:pk>/', views.complete_todo, name='complete-todo'),
+    path('delete_todo/<int:pk>/', views.delete_todo, name='delete-todo'),
     path('admin/', admin.site.urls),
 ]
