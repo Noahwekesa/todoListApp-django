@@ -68,6 +68,12 @@ python manage.py migrate
 
 ```
 
+5. Create superuser
+
+```sh
+python manage.py createsuperuser
+```
+
 6. runserver
 
 ```sh
